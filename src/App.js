@@ -6,14 +6,20 @@ import {
     View
 } from 'react-native'
 
+import Display from './Components/Display'
+
 export default class App extends Component {
 
     state = {
         counter: 0
     }
 
-    sum = () => {
-        this.setState({ state: this.state.counter + 1})
+    clearCounter = () => {
+        this.setState({ counter: 0 })
+    }
+
+    increaseCounter = () => {
+        this.setState({ counter: this.state.counter + 1 })
     }
 
     render() {
@@ -22,21 +28,20 @@ export default class App extends Component {
                 <View style={styles.header} >
                     <Text style={styles.title}>
                         Contador
-                </Text>
+                    </Text> 
                 </View>
                 <View style={styles.display} >
-                    <Text style={styles.displayText}>
-                        {this.state.counter}
-                    </Text>
+                    <Display counter={this.state.counter} />
                 </View>
                 <View style={styles.buttons} >
-                    <Button title="Limpar" 
-                            color="red" 
-                            onPress={() => { this.setState({ counter: 0 }) }}
-                            />
-                    <Button title="Acrescentar"                   color="green"
-                            onPress={() => { this.setState({ counter: this.state.counter + 1 }) }}
-                     />
+                    <Button title="Limpar"
+                        color="red"
+                        onPress={this.clearCounter}
+                    />
+                    <Button title="Acrescentar"
+                        color="green"
+                        onPress={this.increaseCounter}
+                    />
                 </View>
             </View>
         )
@@ -54,14 +59,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     display: {
+        alignItems: 'center',
         flex: 2,
         justifyContent: 'center',
-        alignItems: 'center',
     },
     buttons: {
         alignItems: 'center',
         flex: 1,
-
         flexDirection: 'row',
         justifyContent: 'space-around'
     },
@@ -69,8 +73,4 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontWeight: 'bold'
     },
-    displayText: {
-        fontSize: 60,
-        fontWeight: 'bold'
-    }
 })
