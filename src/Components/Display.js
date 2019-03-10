@@ -17,9 +17,9 @@ styles = StyleSheet.create({
         borderWidth: 5,
         borderColor: '#999',
         backgroundColor: '#666',
-        height: 150,
+        height: '80%',
         justifyContent: 'center',
-        width: 250,
+        width: '80%',
     },
     displayText: {
         color: 'white',
