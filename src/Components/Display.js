@@ -17,7 +17,7 @@ styles = StyleSheet.create({
         borderWidth: 5,
         borderColor: '#999',
         backgroundColor: '#666',
-        height: 250,
+        height: 150,
         justifyContent: 'center',
         width: 250,
     },
