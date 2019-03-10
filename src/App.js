@@ -59,8 +59,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     display: {
-        alignItems: 'center',
+        alignItems: 'flex-start',
         flex: 2,
+        flexDirection: 'row',
         justifyContent: 'center',
     },
     buttons: {
