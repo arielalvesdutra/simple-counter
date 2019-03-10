@@ -34,12 +34,12 @@ export default class App extends Component {
                     <Display counter={this.state.counter} />
                 </View>
                 <View style={styles.buttons} >
-                    <Button title="Limpar"
-                        color="red"
+                    <Button title="Zerar"
+                        color="gray"
                         onPress={this.clearCounter}
                     />
                     <Button title="Acrescentar"
-                        color="green"
+                        color="gray"
                         onPress={this.increaseCounter}
                     />
                 </View>
