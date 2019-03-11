@@ -12,5 +12,7 @@ A funcionalidade acrescentar ou zerar o valor de um contador.
 
 ## Imagem
 
-![association graph](./assets/docs/v0-0-0.jpg)
+No exemplo abaixo, se está utilizando o APP para registrar a quantidade de vezes que se foi interrompido no dia * - *
+
+![association graph](./assets/docs/v0-1-0.jpg)
 
