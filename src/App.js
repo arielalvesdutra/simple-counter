@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {
+    AsyncStorage,
     Button,
     StyleSheet,
     Text,
@@ -14,12 +15,18 @@ export default class App extends Component {
         counter: 0
     }
 
-    clearCounter = () => {
+    componentDidMount = () => AsyncStorage.getItem('COUNTER').then((value) => this.setState({ 'counter': parseInt(value) }))
+
+    clearCounter = async () => {
         this.setState({ counter: 0 })
+        await AsyncStorage.setItem('COUNTER', String(0))
     }
 
-    increaseCounter = () => {
-        this.setState({ counter: this.state.counter + 1 })
+    increaseCounter = async () => {
+        let counter = this.state.counter + 1
+        this.setState({ counter: counter})
+
+        await AsyncStorage.setItem('COUNTER', String(counter))
     }
 
     render() {
