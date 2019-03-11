@@ -4,6 +4,7 @@ import {
     Button,
     StyleSheet,
     Text,
+    TextInput,
     View
 } from 'react-native'
 
@@ -12,15 +13,26 @@ import Display from './Components/Display'
 export default class App extends Component {
 
     state = {
-        counter: 0
+        counter: 0,
+        counterTitle: ''
     }
 
-    componentDidMount = () => AsyncStorage.getItem('COUNTER').then(
-        (value) => {
-            if (value) {
-                this.setState({ 'counter': parseInt(value) })
-            }
+    componentDidMount = () => {
+        
+        AsyncStorage.getItem('COUNTER').then(
+            (value) => {
+                if (value) {
+                    this.setState({ 'counter': parseInt(value) })
+                }
         })
+
+        AsyncStorage.getItem('COUNTER_TITLE').then(
+            (value) => {
+                if (value) {
+                    this.setState({ 'counterTitle': value })
+                }
+        })
+    }
 
     clearCounter = async () => {
         this.setState({ counter: 0 })
@@ -29,9 +41,14 @@ export default class App extends Component {
 
     increaseCounter = async () => {
         let counter = this.state.counter + 1
-        this.setState({ counter: counter})
+        this.setState({ counter: counter })
 
         await AsyncStorage.setItem('COUNTER', String(counter))
+    }
+
+    setCounterTitle = async (counterTitle) => {
+        this.setState({ counterTitle: counterTitle })
+        await AsyncStorage.setItem('COUNTER_TITLE', counterTitle)
     }
 
     render() {
@@ -40,7 +57,15 @@ export default class App extends Component {
                 <View style={styles.header} >
                     <Text style={styles.title}>
                         Contador
-                    </Text> 
+                    </Text>
+                </View>
+                <View style={styles.counterTitle}>
+                    <TextInput
+                        style={styles.counterTitleInput}
+                        placeholder="Titulo do contador"
+                        onChangeText={this.setCounterTitle}
+                        value={this.state.counterTitle}
+                    />
                 </View>
                 <View style={styles.display} >
                     <Display counter={this.state.counter} />
@@ -69,6 +94,19 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'center'
+    },
+    counterTitle: {
+        alignItems: 'flex-start',
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+    },
+    counterTitleInput: {
+        borderBottomWidth: 1,
+        borderBottomColor: 'gray',
+        color: 'gray',
+        fontSize: 15,
+        width: '60%',
     },
     display: {
         alignItems: 'flex-start',
