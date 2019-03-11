@@ -15,7 +15,12 @@ export default class App extends Component {
         counter: 0
     }
 
-    componentDidMount = () => AsyncStorage.getItem('COUNTER').then((value) => this.setState({ 'counter': parseInt(value) }))
+    componentDidMount = () => AsyncStorage.getItem('COUNTER').then(
+        (value) => {
+            if (value) {
+                this.setState({ 'counter': parseInt(value) })
+            }
+        })
 
     clearCounter = async () => {
         this.setState({ counter: 0 })
